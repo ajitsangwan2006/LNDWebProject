@@ -1,6 +1,11 @@
-# This project is create to fullfil L&D Web API exercise requirements. For requirement specifications please see the "L&D Web API exercise" onward sections.
+## This project is create to fulfill L&D Web API exercise requirements. For requirement specifications please see the "L&D Web API exercise" onward sections.
 
-To run the project simply run dockerfile to crearte image and run container. Testing can done through running postman script.
+To run the project simply run dockerfile to create image and run container. Testing can done through running postman script.
+
+## Published docker image location
+https://hub.docker.com/repository/docker/as00353579/work-repo
+
+docker pull as00353579/work-repo:LNDWebProject
 
 ###############################################################################
 
@@ -43,7 +48,7 @@ Create a web server that responds with a either a 404 or the following balance p
 {
     "transactionId": "tx101",
     "version" : 1,
-    "coins" : 100,
+    "coins" : 100
 }
 ```
 
