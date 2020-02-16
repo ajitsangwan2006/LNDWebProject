@@ -1,15 +1,10 @@
-FROM alpine/git
-
-#maintainer
-MAINTAINER ajitsangwan2006@gmail.com
-
+FROM alpine/git as clone
 WORKDIR /app
 RUN git clone https://github.com/ajitsangwan2006/LNDWebProject.git
-
-FROM maven:3.5.2-jdk-11-alpine
+FROM maven:3.5-jdk-8-alpine as build
 WORKDIR /app/LNDWebProject
 RUN mvn install
-RUN javac rest/src/com/app/Main.java
-#expose port 8080
-EXPOSE 8080
-CMD ["java", "rest/src/com/app/Main"]
+FROM openjdk:8-jre-alpine
+WORKDIR /app/LNDWebProject
+COPY --from=build /app/LNDWebProject/rest/target/rest-1.0-SNAPSHOT.jar /app/LNDWebProject
+CMD [“java -jar rest-1.0-SNAPSHOT.jar”]
