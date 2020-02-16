@@ -1,0 +1,5 @@
+# intellij dir
+.idea
+
+# Build targets
+target/
