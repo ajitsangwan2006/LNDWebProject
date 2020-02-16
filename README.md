@@ -1,3 +1,9 @@
+# This project is create to fullfil L&D Web API exercise requirements. For requirement specifications please see the "L&D Web API exercise" onward sections.
+
+To run the project simply run dockerfile to crearte image and run container. Testing can done through running postman script.
+
+###############################################################################
+
 # L&D Web API exercise
 
 This repository hosts a Learning & Development exercise to build a Web API.
