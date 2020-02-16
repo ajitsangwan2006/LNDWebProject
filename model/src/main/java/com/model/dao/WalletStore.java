@@ -1,8 +1,6 @@
 package com.model.dao;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * WalletStore: Manages the wallet data source get and put operations
@@ -10,7 +8,7 @@ import java.util.Map;
 public class WalletStore {
 
     private static WalletStore store;
-    private Map<String, Wallet> walletDataSource;
+    private Map<String, LinkedList<Wallet>> walletDataSource;
 
     private WalletStore(){
         walletDataSource = Collections.synchronizedMap(new HashMap<>());
@@ -24,10 +22,18 @@ public class WalletStore {
     }
 
     protected void put(String walletId, Wallet wallet) {
-        walletDataSource.put(walletId, wallet);
+        LinkedList<Wallet> existingData = walletDataSource.get(walletId);
+        if(existingData == null){
+            existingData = new LinkedList<>();
+            existingData.push(wallet);
+        }else {
+            existingData.addLast(wallet);
+        }
+        walletDataSource.put(walletId, existingData);
     }
 
     protected Wallet get(String walletId) {
-        return walletDataSource.get(walletId);
+        LinkedList<Wallet> existingData = walletDataSource.get(walletId);
+        return existingData != null ? existingData.getLast() : null;
     }
 }
